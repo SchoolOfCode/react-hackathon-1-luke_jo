@@ -1,7 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import "../index.css";
 import Square from "../square";
-import calculateWinner from "../Winner";
 
 function Board({ squares, onClick }) {
   function renderSquare(i) {
