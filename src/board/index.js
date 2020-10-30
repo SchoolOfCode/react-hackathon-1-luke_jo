@@ -3,38 +3,20 @@ import "../index.css";
 import Square from "../square";
 import calculateWinner from "../Winner";
 
-function Board() {
-  const [moves, setMoves] = useState({
-    squares: Array(9).fill(null),
-    xIsNext: true,
-  });
-
-  console.log(moves);
-
-  function handleClick(i) {
-    const squares = moves.squares.slice();
-    squares[i] = moves.xIsNext ? "X" : "O";
-
-    console.log(squares);
-    setMoves({ squares: squares, xIsNext: !moves.xIsNext });
-  }
-
+function Board({ squares, onClick }) {
   function renderSquare(i) {
     return (
       <Square
-        value={moves.squares[i]}
+        value={squares[i]}
         onClick={() => {
-          handleClick(i);
+          onClick(i);
         }}
       />
     );
   }
 
-  const status = `Next player: ${moves.xIsNext ? "X" : "O"}`;
-
   return (
     <div>
-      <div className="status">{status}</div>
       <div className="board-row">
         {renderSquare(0)}
         {renderSquare(1)}
