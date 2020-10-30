@@ -1,12 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 import "../index.css";
 
-function Square({ value }) {
+function Square({ value, onClick }) {
   return (
     <button
       className="square"
       onClick={() => {
-        alert("click");
+        onClick();
       }}
     >
       {value}

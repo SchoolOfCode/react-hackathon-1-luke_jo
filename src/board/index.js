@@ -1,13 +1,36 @@
 import React, { useState } from "react";
 import "../index.css";
 import Square from "../square";
+import calculateWinner from "../Winner";
 
 function Board() {
-  function renderSquare(i) {
-    return <Square value={i} />;
+  const [moves, setMoves] = useState({
+    squares: Array(9).fill(null),
+    xIsNext: true,
+  });
+
+  console.log(moves);
+
+  function handleClick(i) {
+    const squares = moves.squares.slice();
+    squares[i] = moves.xIsNext ? "X" : "O";
+
+    console.log(squares);
+    setMoves({ squares: squares, xIsNext: !moves.xIsNext });
   }
 
-  const status = "Next player: X";
+  function renderSquare(i) {
+    return (
+      <Square
+        value={moves.squares[i]}
+        onClick={() => {
+          handleClick(i);
+        }}
+      />
+    );
+  }
+
+  const status = `Next player: ${moves.xIsNext ? "X" : "O"}`;
 
   return (
     <div>
